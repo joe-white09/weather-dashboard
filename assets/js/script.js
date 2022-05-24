@@ -1,9 +1,9 @@
 var cityInputEl = document.querySelector("#city-name");
 var cityFormEl = document.querySelector("#city-input");
+var searchedCitiesListEl = document.querySelector("#city-list");
 
-function getCityName () {
 
-}
+
 function getForecast(cityName) {
     var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=db90f37516c305d620d0e44557fd5bf2";
 
@@ -14,6 +14,10 @@ function getForecast(cityName) {
     .then(function(data) {
         console.log(data);
     });
+
+    var searchedCities = document.createElement("button");
+    searchedCities.innerHTML = cityName;
+    searchedCitiesListEl.appendChild(searchedCities);
 };
 
 var formSubmitHandler = function(event) {
