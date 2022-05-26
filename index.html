@@ -11,59 +11,67 @@
 <body>
     <h1>Weather Dashboard</h1>
             <!-- Search box -->
-    <div>
+<div class="d-flex row">
+    <div class="search col-4">
+        <div>
         <h2>Search for a City:</h2>
         <form id="city-input">
-            <input name="city-name" id="city-name" type="text" autofocus="true"/>
+            <input name="city-name" id="city-name" type="text" autofocus="true"/><br>
             <button type="submit" class="">Get Forecast</button>
         </form>     
-    </div>
+        </div>
+    
     <!-- List of searched cities -->
-    <div class="col">
-        <ul id="city-list">
-        </ul>
+    <div>
+        <h3>Recent search history:</h3>
+        <div id="city-list"></div>
+    </div>
     </div>
 <!-- Box to display searches current weather -->
-    <div id="current-weather">
-      <div id="current-city"></div>
+<div class="weather col-8">
+    <div id="current-weather" class="">
+      <div id="current-city" class="font-weight-bold"></div>
       <div id="current-temp"></div>
       <div id="current-wind"></div>
       <div id="current-humidity"></div>
     </div>
 
+
     <!-- box to display 5 day forecast -->
     <div id="forecast" class="row">
-        <div id="day-1" class="card">
-            <p id="day-1-date"></p>
+        <div id="day-1" class="">
+            <p id="day-1-date" class="font-weight-bold"></p>
             <p id="day-1-temp"></p>
             <p id="day-1-wind"></p>
             <p id="day-1-humidity"></p>
         </div>
-        <div id="day-2" class="card">
-            <p id="day-2-date"></p>
+        <div id="day-2" class="">
+            <p id="day-2-date" class="font-weight-bold"></p>
             <p id="day-2-temp"></p>
             <p id="day-2-wind"></p>
             <p id="day-2-humidity"></p>
         </div>
-        <div id="day-3" class="card">
-            <p id="day-3-date"></p>
+        <div id="day-3" class="">
+            <p id="day-3-date" class="font-weight-bold"></p>
             <p id="day-3-temp"></p>
             <p id="day-3-wind"></p>
             <p id="day-3-humidity"></p>
         </div>
-        <div id="day-4" class="card">
-            <p id="day-4-date"></p>
+        <div id="day-4" class="">
+            <p id="day-4-date" class="font-weight-bold"></p>
             <p id="day-4-temp"></p>
             <p id="day-4-wind"></p>
             <p id="day-4-humidity"></p>
         </div>
-        <div id="day-5" class="card">
-            <p id="day-5-date"></p>
+        <div id="day-5" class="">
+            <p id="day-5-date" class="font-weight-bold"></p>
             <p id="day-5-temp"></p>
             <p id="day-5-wind"></p>
             <p id="day-5-humidity"></p>
         </div>
     </div>
+</div>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/script.js"></script>  
 </body>

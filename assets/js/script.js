@@ -28,6 +28,11 @@ var day5Date = document.querySelector("#day-5-date");
 var day5Temp = document.querySelector("#day-5-temp");
 var day5Wind = document.querySelector("#day-5-wind");
 var day5Humidity = document.querySelector("#day-5-humidity");
+var day1El = document.querySelector("#day-1");
+var day2El = document.querySelector("#day-2");
+var day3El = document.querySelector("#day-3");
+var day4El = document.querySelector("#day-4");
+var day5El = document.querySelector("#day-5");
 
 
 // api call to get the forecast
@@ -44,6 +49,7 @@ function getForecast(cityName) {
             currentTempEl.innerHTML = "Temperature: " + data.main.temp + "\xB0" +"F";
             currentWindEl.innerHTML = "Wind: " + data.wind.speed + " mph";
             currentHumidityEl.innerHTML = "Humidity: " + data.main.humidity + "%";
+            currentWeatherEl.setAttribute("class", "border border-dark card m-2 p-3")
 
         });
         } else {
@@ -63,23 +69,27 @@ function getForecast(cityName) {
             day1Temp.textContent = "Temperature: " + data.list[0].main.temp + "\xB0" +"F";
             day1Wind.textContent= "Wind: " + data.list[0].wind.speed + " mph";
             day1Humidity.textContent = "Humidity: " + data.list[0].main.humidity + "%";
+            day1El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
             day2Date.textContent = moment().add(2, 'days').format('MM/D/YYYY');
             day2Temp.textContent = "Temperature: " + data.list[1].main.temp + "\xB0" +"F";
             day2Wind.textContent= "Wind: " + data.list[1].wind.speed + " mph";
             day2Humidity.textContent = "Humidity: " + data.list[1].main.humidity + "%";
+            day2El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
             day3Date.textContent = moment().add(3, 'days').format('MM/D/YYYY');
             day3Temp.textContent = "Temperature: " + data.list[2].main.temp + "\xB0" +"F";
             day3Wind.textContent= "Wind: " + data.list[2].wind.speed + " mph";
             day3Humidity.textContent = "Humidity: " + data.list[2].main.humidity + "%";
+            day3El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
             day4Date.textContent = moment().add(4, 'days').format('MM/D/YYYY');
             day4Temp.textContent = "Temperature: " + data.list[3].main.temp + "\xB0" +"F";
             day4Wind.textContent= "Wind: " + data.list[3].wind.speed + " mph";
             day4Humidity.textContent = "Humidity: " + data.list[3].main.humidity + "%";
+            day4El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
             day5Date.textContent = moment().add(5, 'days').format('MM/D/YYYY');
             day5Temp.textContent = "Temperature: " + data.list[4].main.temp + "\xB0" +"F";
             day5Wind.textContent= "Wind: " + data.list[4].wind.speed + " mph";
             day5Humidity.textContent = "Humidity: " + data.list[4].main.humidity + "%";
-
+            day5El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
         });
         } else {
         alert("City not found");
@@ -109,6 +119,7 @@ var formSubmitHandler = function(event) {
         var searchedCities = document.createElement("button");
         searchedCities.innerHTML = cityName;
         searchedCities.setAttribute("city", cityName);
+        searchedCities.setAttribute("class", "col-12")
         searchedCitiesListEl.appendChild(searchedCities);
     } else {
         alert("Please enter a valid city name")
