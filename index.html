@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
@@ -14,29 +15,54 @@
         <h2>Search for a City:</h2>
         <form id="city-input">
             <input name="city-name" id="city-name" type="text" autofocus="true"/>
-            <button type="submit" class="btn">Get Forecast</button>
+            <button type="submit" class="">Get Forecast</button>
         </form>     
     </div>
     <!-- List of searched cities -->
-    <div>
+    <div class="col">
         <ul id="city-list">
         </ul>
     </div>
 <!-- Box to display searches current weather -->
     <div id="current-weather">
-      <div id="current-city"><img id="icon" src="" ></div>
+      <div id="current-city"></div>
       <div id="current-temp"></div>
       <div id="current-wind"></div>
       <div id="current-humidity"></div>
     </div>
 
     <!-- box to display 5 day forecast -->
-    <div id="forecast">
-        <div id="day-1" class="card"></div>
-        <div id="day-2" class="card"></div>
-        <div id="day-3" class="card"></div>
-        <div id="day-4" class="card"></div>
-        <div id="day-5" class="card"></div>
+    <div id="forecast" class="row">
+        <div id="day-1" class="card">
+            <p id="day-1-date"></p>
+            <p id="day-1-temp"></p>
+            <p id="day-1-wind"></p>
+            <p id="day-1-humidity"></p>
+        </div>
+        <div id="day-2" class="card">
+            <p id="day-2-date"></p>
+            <p id="day-2-temp"></p>
+            <p id="day-2-wind"></p>
+            <p id="day-2-humidity"></p>
+        </div>
+        <div id="day-3" class="card">
+            <p id="day-3-date"></p>
+            <p id="day-3-temp"></p>
+            <p id="day-3-wind"></p>
+            <p id="day-3-humidity"></p>
+        </div>
+        <div id="day-4" class="card">
+            <p id="day-4-date"></p>
+            <p id="day-4-temp"></p>
+            <p id="day-4-wind"></p>
+            <p id="day-4-humidity"></p>
+        </div>
+        <div id="day-5" class="card">
+            <p id="day-5-date"></p>
+            <p id="day-5-temp"></p>
+            <p id="day-5-wind"></p>
+            <p id="day-5-humidity"></p>
+        </div>
     </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/script.js"></script>  
