@@ -111,6 +111,19 @@ function getUvIndex(searchDataObj) {
                 currentHumidityEl.innerHTML = "Humidity: " + data.current.humidity + "%";
                 currentWeatherEl.setAttribute("class", "border border-dark card m-2 p-3");
                 currentUvIndexEl.innerHTML = "UV Index: " + data.current.uvi;
+
+                if(data.current.uvi<3){
+                    currentUvIndexEl.setAttribute("class", "bg-success text-white")
+                } else if (data.current.uvi>2 && data.current.uvi<6){
+                    currentUvIndexEl.setAttribute("class", "bg-warning text-dark")
+                } else if (data.current.uvi>5 && data.current.uvi<8) {
+                    currentUvIndexEl.setAttribute("class", "bg-orange text-dark")
+                } else if (data.current.uvi>7 && data.current.uvi<11) {
+                    currentUvIndexEl.setAttribute("class", "bg-danger text-white")
+                } else if (data.current.uvi>10) {
+                    currentUvIndexEl.setAttribute("class", "bg-purple text-white")
+                };
+            
             //sets forecast cards
             day1Date.textContent = moment().add(1, 'days').format('MM/D/YYYY');
             day1Temp.textContent = "Temperature: " + Math.round(data.daily[0].temp.min) + "\xB0" + " - " + Math.round(data.daily[0].temp.max) + "\xB0" +"F";

@@ -8,3 +8,11 @@ h1 {
 h3 {
     border-bottom: solid gray 3px;
 }
+
+.bg-orange {
+    background-color: orange;
+}
+
+.bg-purple {
+    background-color: purple;
+}
