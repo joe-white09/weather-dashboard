@@ -12,12 +12,12 @@
     <h1>Weather Dashboard</h1>
             <!-- Search box -->
 <div class="d-flex row m-2">
-    <div class="search col-4">
+    <div class="search col-3">
         <div>
         <h2>Search for a City:</h2>
         <form id="city-input">
             <input name="city-name" id="city-name" type="text" autofocus="true"/><br>
-            <button type="submit" class="">Get Forecast</button>
+            <button type="submit" class="m-1 rounded">Get Forecast</button>
         </form>     
         </div>
     
@@ -34,36 +34,37 @@
       <div id="current-temp"></div>
       <div id="current-wind"></div>
       <div id="current-humidity"></div>
+      <div id="current-uv"></div>
     </div>
 
 
     <!-- box to display 5 day forecast -->
     <div id="forecast" class="row">
-        <div id="day-1" class="">
+        <div id="day-1" class="col-2">
             <p id="day-1-date" class="font-weight-bold"></p>
             <p id="day-1-temp"></p>
             <p id="day-1-wind"></p>
             <p id="day-1-humidity"></p>
         </div>
-        <div id="day-2" class="">
+        <div id="day-2" class="col-2">
             <p id="day-2-date" class="font-weight-bold"></p>
             <p id="day-2-temp"></p>
             <p id="day-2-wind"></p>
             <p id="day-2-humidity"></p>
         </div>
-        <div id="day-3" class="">
+        <div id="day-3" class="col-3">
             <p id="day-3-date" class="font-weight-bold"></p>
             <p id="day-3-temp"></p>
             <p id="day-3-wind"></p>
             <p id="day-3-humidity"></p>
         </div>
-        <div id="day-4" class="">
+        <div id="day-4" class="col-2">
             <p id="day-4-date" class="font-weight-bold"></p>
             <p id="day-4-temp"></p>
             <p id="day-4-wind"></p>
             <p id="day-4-humidity"></p>
         </div>
-        <div id="day-5" class="">
+        <div id="day-5" class="col-2">
             <p id="day-5-date" class="font-weight-bold"></p>
             <p id="day-5-temp"></p>
             <p id="day-5-wind"></p>

@@ -8,6 +8,8 @@ var currentCityEl =document.querySelector("#current-city");
 var currentTempEl = document.querySelector("#current-temp");
 var currentWindEl = document.querySelector("#current-wind");
 var currentHumidityEl = document.querySelector("#current-humidity");
+var currentUvIndexEl = document.querySelector("#current-uv");
+var currentIconEl = document.querySelector("#current-icon");
 var day1Date = document.querySelector("#day-1-date");
 var day1Temp = document.querySelector("#day-1-temp");
 var day1Wind = document.querySelector("#day-1-wind");
@@ -36,30 +38,28 @@ var day5El = document.querySelector("#day-5");
 var searchIdCounter = 0;
 var searches = [];
 
-
-function getLatLon(cityName) {
-    var forecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&cnt=5&mode=json&appid=db90f37516c305d620d0e44557fd5bf2";
+// creates data object and fetches lat and lon
+function newSearch(cityName) {
+    var forecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&appid=db90f37516c305d620d0e44557fd5bf2";
     fetch(forecastUrl).then(function(response) {
     
         if (response.ok) {
          response.json().then(function(data) {
-            for(var i = 0; i<data.list.length; i+=8) {
-                console.log(data);
-            }               
+              
             var searchDataObj = {
                 name: cityName,
                 tag: data.city.name,
                 lat: data.city.coord.lat,
-                lon: data.city.coord.lat
+                lon: data.city.coord.lon
             };
             var searchedCities = document.createElement("button");
             searchedCities.innerHTML = data.city.name;
             searchedCities.setAttribute("city", cityName);
-            searchedCities.setAttribute("class", "col-12")
+            searchedCities.setAttribute("class", "col-12 m-1 rounded")
             searchedCitiesEl.appendChild(searchedCities);
             searches.push(searchDataObj);
             saveSearches();
-            getForecast(cityName);
+            getUvIndex(searchDataObj);
         });
         } else {
         alert("City not found");
@@ -72,67 +72,20 @@ function getLatLon(cityName) {
 
 };
 
-// api call to get the forecast
-function getForecast(cityName) {
-    // {city name}&cnt={cnt}&appid={API key}
-    var forecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&cnt=5&mode=json&appid=db90f37516c305d620d0e44557fd5bf2";
-    var currentWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=6123d81d4878931a77a13018b22cb0ab";
-    // var indexApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latEl + "&lon=" + lonEl + "&appid=6123d81d4878931a77a13018b22cb0ab";
-    // &exclude={part}
-//    call for the current weather
-    fetch(currentWeatherUrl).then(function(response) {
-    
-        if (response.ok) {
-         return response.json().then(function(data) {
-            console.log(data);
-            currentCityEl.innerHTML= data.name + ", " + data.sys.country + " (" + currentDate + ")"; 
-            currentTempEl.innerHTML = "Temperature: " + data.main.temp + "\xB0" +"F";
-            currentWindEl.innerHTML = "Wind: " + data.wind.speed + " mph";
-            currentHumidityEl.innerHTML = "Humidity: " + data.main.humidity + "%";
-            currentWeatherEl.setAttribute("class", "border border-dark card m-2 p-3");
-
-        });
-        } else {
-        alert("City not found");
-        }
-})
-.catch(function(error) {
-    alert("Unable to connect to OpenWeather");
-}
-);
-// call for the forecast
+function recallWeather(cityName) {
+    var forecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&appid=db90f37516c305d620d0e44557fd5bf2";
     fetch(forecastUrl).then(function(response) {
     
         if (response.ok) {
          response.json().then(function(data) {
-            for(var i = 0; i<data.list.length; i+=8) {
-                console.log(data);
-            }               
-            day1Date.textContent = moment().add(1, 'days').format('MM/D/YYYY');
-            day1Temp.textContent = "Temperature: " + data.list[0].main.temp + "\xB0" +"F";
-            day1Wind.textContent= "Wind: " + data.list[0].wind.speed + " mph";
-            day1Humidity.textContent = "Humidity: " + data.list[0].main.humidity + "%";
-            day1El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
-            day2Date.textContent = moment().add(2, 'days').format('MM/D/YYYY');
-            day2Temp.textContent = "Temperature: " + data.list[1].main.temp + "\xB0" +"F";
-            day2Wind.textContent= "Wind: " + data.list[1].wind.speed + " mph";
-            day2Humidity.textContent = "Humidity: " + data.list[1].main.humidity + "%";
-            day2El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
-            day3Date.textContent = moment().add(3, 'days').format('MM/D/YYYY');
-            day3Temp.textContent = "Temperature: " + data.list[2].main.temp + "\xB0" +"F";
-            day3Wind.textContent= "Wind: " + data.list[2].wind.speed + " mph";
-            day3Humidity.textContent = "Humidity: " + data.list[2].main.humidity + "%";
-            day3El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
-            day4Date.textContent = moment().add(4, 'days').format('MM/D/YYYY');
-            day4Temp.textContent = "Temperature: " + data.list[3].main.temp + "\xB0" +"F";
-            day4Wind.textContent= "Wind: " + data.list[3].wind.speed + " mph";
-            day4Humidity.textContent = "Humidity: " + data.list[3].main.humidity + "%";
-            day4El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
-            day5Date.textContent = moment().add(5, 'days').format('MM/D/YYYY');
-            day5Temp.textContent = "Temperature: " + data.list[4].main.temp + "\xB0" +"F";
-            day5Wind.textContent= "Wind: " + data.list[4].wind.speed + " mph";
-            day5Humidity.textContent = "Humidity: " + data.list[4].main.humidity + "%";
-            day5El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            
+            var searchDataObj = {
+                name: cityName,
+                tag: data.city.name,
+                lat: data.city.coord.lat,
+                lon: data.city.coord.lon
+            };
+            getUvIndex(searchDataObj);
         });
         } else {
         alert("City not found");
@@ -141,17 +94,61 @@ function getForecast(cityName) {
 .catch(function(error) {
     alert("Unable to connect to OpenWeather");
 });
+};
 
+function getUvIndex(searchDataObj) {
+    var latEl = searchDataObj.lat;
+    var lonEl = searchDataObj.lon;
+    var uvIndexUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latEl + "&lon=" + lonEl + "&units=imperial&exclude=minutely,hourly&appid=6123d81d4878931a77a13018b22cb0ab";
+    fetch(uvIndexUrl).then(function(response) {
+        if (response.ok) {
+            return response.json().then(function(data) {
+                console.log(data);
+            // sets current conditions card
+                currentCityEl.innerHTML= searchDataObj.tag + " (" + currentDate + ")";
+                currentTempEl.innerHTML = "Temperature: " + Math.round(data.current.temp) + "\xB0" +"F";
+                currentWindEl.innerHTML = "Wind: " + data.current.wind_speed + " mph";
+                currentHumidityEl.innerHTML = "Humidity: " + data.current.humidity + "%";
+                currentWeatherEl.setAttribute("class", "border border-dark card m-2 p-3");
+                currentUvIndexEl.innerHTML = "UV Index: " + data.current.uvi;
+            //sets forecast cards
+            day1Date.textContent = moment().add(1, 'days').format('MM/D/YYYY');
+            day1Temp.textContent = "Temperature: " + Math.round(data.daily[0].temp.min) + "\xB0" + " - " + Math.round(data.daily[0].temp.max) + "\xB0" +"F";
+            day1Wind.textContent= "Wind: " + data.daily[0].wind_speed + " mph";
+            day1Humidity.textContent = "Humidity: " + data.daily[0].humidity + "%";
+            day1El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day2Date.textContent = moment().add(2, 'days').format('MM/D/YYYY');
+            day2Temp.textContent = "Temperature: " + Math.round(data.daily[1].temp.min) + "\xB0" + " - " + Math.round(data.daily[1].temp.max) + "\xB0" +"F";
+            day2Wind.textContent= "Wind: " + data.daily[1].wind_speed + " mph";
+            day2Humidity.textContent = "Humidity: " + data.daily[1].humidity + "%";
+            day2El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day3Date.textContent = moment().add(3, 'days').format('MM/D/YYYY');
+            day3Temp.textContent = "Temperature: " + Math.round(data.daily[2].temp.min) + "\xB0" + " - " + Math.round(data.daily[2].temp.max) + "\xB0" +"F";
+            day3Wind.textContent= "Wind: " + data.daily[2].wind_speed + " mph";
+            day3Humidity.textContent = "Humidity: " + data.daily[2].humidity + "%";
+            day3El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day4Date.textContent = moment().add(4, 'days').format('MM/D/YYYY');
+            day4Temp.textContent = "Temperature: " + Math.round(data.daily[3].temp.min) + "\xB0" + " - " + Math.round(data.daily[3].temp.max) + "\xB0" +"F";
+            day4Wind.textContent= "Wind: " + data.daily[3].wind_speed + " mph";
+            day4Humidity.textContent = "Humidity: " + data.daily[3].humidity + "%";
+            day4El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day5Date.textContent = moment().add(5, 'days').format('MM/D/YYYY');
+            day5Temp.textContent = "Temperature: " + Math.round(data.daily[4].temp.min) + "\xB0" + " - " + Math.round(data.daily[4].temp.max) + "\xB0" +"F";
+            day5Wind.textContent= "Wind: " + data.daily[4].wind_speed + " mph";
+            day5Humidity.textContent = "Humidity: " + data.daily[4].humidity + "%";
+            day5El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
 
+            })
+        }
+        
+    })
 };
 
 // function to call upon name on the buttons
 function recallForecast(event) {
     var cityName = event.target.getAttribute("city");
-    getForecast(cityName);
+    recallWeather(cityName);
 };
-
-
 
 // get the city name from the user input
 var formSubmitHandler = function(event) {
@@ -159,24 +156,24 @@ var formSubmitHandler = function(event) {
     var cityName = cityInputEl.value.trim();
 
     if (cityName) {
-        getLatLon(cityName);
+        newSearch(cityName);
         cityInputEl.value = "";
 
-
-        // searchIdCounter++;
     } else {
         alert("Please enter a valid city name")
     };
 
 };
 
+// sets recent searches to local storage
 var saveSearches = function(){
     localStorage.setItem("searches", JSON.stringify(searches));
 };
 
+//returns items from local storage
 var loadSearches = function(){
     var savedSearches = localStorage.getItem("searches");
-    if(!saveSearches){
+    if(!savedSearches){
         return false;
     }
     console.log("Saved Searches Found");
@@ -184,7 +181,7 @@ var loadSearches = function(){
     savedSearches = JSON.parse(savedSearches);
 
     for (var i = 0; i < savedSearches.length; i++) {
-        getLatLon(savedSearches[i].name);
+        newSearch(savedSearches[i].name);
     }
     console.log(searches);
 };
