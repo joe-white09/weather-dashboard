@@ -118,7 +118,7 @@ function getUvIndex(searchDataObj) {
                 currentTempEl.innerHTML = "Temperature: " + Math.round(data.current.temp) + "\xB0" +"F";
                 currentWindEl.innerHTML = "Wind: " + data.current.wind_speed + " mph";
                 currentHumidityEl.innerHTML = "Humidity: " + data.current.humidity + "%";
-                currentWeatherEl.setAttribute("class", "border border-dark card m-2 p-3");
+                currentWeatherEl.setAttribute("class", "border border-dark card m-2 p-3 bg-current");
                 currentUvIndexEl.innerHTML = "UV Index: " + data.current.uvi;
 
                 if(data.current.uvi<3){
@@ -140,35 +140,35 @@ function getUvIndex(searchDataObj) {
             day1Temp.textContent = "Temperature: " + Math.round(data.daily[0].temp.min) + "\xB0" + " - " + Math.round(data.daily[0].temp.max) + "\xB0" +"F";
             day1Wind.textContent= "Wind: " + data.daily[0].wind_speed + " mph";
             day1Humidity.textContent = "Humidity: " + data.daily[0].humidity + "%";
-            day1El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day1El.setAttribute("class", "card m-1 p-2 text-white bg-forecast");
             day2Date.textContent = moment().add(2, 'days').format('MM/D/YYYY');
             day2Date.appendChild(day2icon);
             day2icon.setAttribute("src", "http://openweathermap.org/img/w/"+ data.daily[1].weather[0].icon + ".png");
             day2Temp.textContent = "Temperature: " + Math.round(data.daily[1].temp.min) + "\xB0" + " - " + Math.round(data.daily[1].temp.max) + "\xB0" +"F";
             day2Wind.textContent= "Wind: " + data.daily[1].wind_speed + " mph";
             day2Humidity.textContent = "Humidity: " + data.daily[1].humidity + "%";
-            day2El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day2El.setAttribute("class", "card m-1 p-2 text-white bg-forecast");
             day3Date.textContent = moment().add(3, 'days').format('MM/D/YYYY');
             day3Date.appendChild(day3icon);
             day3icon.setAttribute("src",  "http://openweathermap.org/img/w/"+ data.daily[2].weather[0].icon + ".png")
             day3Temp.textContent = "Temperature: " + Math.round(data.daily[2].temp.min) + "\xB0" + " - " + Math.round(data.daily[2].temp.max) + "\xB0" +"F";
             day3Wind.textContent= "Wind: " + data.daily[2].wind_speed + " mph";
             day3Humidity.textContent = "Humidity: " + data.daily[2].humidity + "%";
-            day3El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day3El.setAttribute("class", "card m-1 p-2 text-white bg-forecast");
             day4Date.textContent = moment().add(4, 'days').format('MM/D/YYYY');
             day4Date.appendChild(day4icon);
             day4icon.setAttribute("src",  "http://openweathermap.org/img/w/"+ data.daily[3].weather[0].icon + ".png");
             day4Temp.textContent = "Temperature: " + Math.round(data.daily[3].temp.min) + "\xB0" + " - " + Math.round(data.daily[3].temp.max) + "\xB0" +"F";
             day4Wind.textContent= "Wind: " + data.daily[3].wind_speed + " mph";
             day4Humidity.textContent = "Humidity: " + data.daily[3].humidity + "%";
-            day4El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day4El.setAttribute("class", "card m-1 p-2 text-white bg-forecast");
             day5Date.textContent = moment().add(5, 'days').format('MM/D/YYYY');
             day5Date.appendChild(day5icon);
             day5icon.setAttribute("src",  "http://openweathermap.org/img/w/"+ data.daily[4].weather[0].icon + ".png");
             day5Temp.textContent = "Temperature: " + Math.round(data.daily[4].temp.min) + "\xB0" + " - " + Math.round(data.daily[4].temp.max) + "\xB0" +"F";
             day5Wind.textContent= "Wind: " + data.daily[4].wind_speed + " mph";
             day5Humidity.textContent = "Humidity: " + data.daily[4].humidity + "%";
-            day5El.setAttribute("class", "card m-1 p-2 text-white bg-secondary");
+            day5El.setAttribute("class", "card m-1 p-2 text-white bg-forecast");
 
             })
         }

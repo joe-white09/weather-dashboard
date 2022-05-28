@@ -9,10 +9,23 @@ h3 {
     border-bottom: solid gray 3px;
 }
 
+.bg-current {
+    background-image: linear-gradient(45deg,  #ddf2ff 0%, #a6e6ff 52%, #73eaff 90%);
+}
+
+.search-btn {
+    background-image:linear-gradient(45deg,  #484bb4 0%, #262bb6 52%, #5a1383 90%);
+    color: white;
+}
+
 .bg-orange {
     background-color: orange;
 }
 
 .bg-purple {
     background-color: purple;
+}
+
+.bg-forecast {
+    background-image: linear-gradient(45deg,  #484eed 0%, #1419ac 52%, #181379 90%);
 }
